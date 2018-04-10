@@ -6,7 +6,7 @@
 
 [JSON](https://en.wikipedia.org/wiki/JSON) is a syntax for serializing numbers, strings, booleans, null, objects and arrays.
 
-First proposed by [Douglas Crockford](https://en.wikipedia.org/wiki/Douglas_Crockford) in 2001 and published as [RFC 4627](https://tools.ietf.org/html/rfc4627) (10 pages only, now obsolete) in 2006, JSON is widely used as a language-independent data format.
+First proposed by [Douglas Crockford](https://en.wikipedia.org/wiki/Douglas_Crockford) in 2001 and published as [RFC 4627](https://tools.ietf.org/html/rfc4627) (ten pages only, now obsolete) in 2006, JSON is widely used as a language-independent data format.
 
 While JSON has six data types, an important omission has been comments, Douglas Crockford himself [explains](https://plus.google.com/+DouglasCrockfordEsq/posts/RK8qyGVaGSr) his reasoning as:
 
