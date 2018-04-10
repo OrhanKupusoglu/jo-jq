@@ -1,9 +1,5 @@
 # JSON with Bash
 
-2018-04-10
-
-----------
-
 [JSON](https://en.wikipedia.org/wiki/JSON) is a syntax for serializing numbers, strings, booleans, null, objects and arrays.
 
 First proposed by [Douglas Crockford](https://en.wikipedia.org/wiki/Douglas_Crockford) in 2001 and published as [RFC 4627](https://tools.ietf.org/html/rfc4627) (ten pages only, now obsolete) in 2006, JSON is widely used as a language-independent data format.
