@@ -189,3 +189,41 @@ $ meta=$(jq -n --slurpfile data wind.json '$data[0].meta')
 $ echo $meta
 { "time": "day", "height": 150, "speed": "m/s" }
 ```
+&nbsp;
+
+### Example
+
+[Rally](https://github.com/openstack/rally) is a benchmarking tool for OpenStack. The [OPNFV Functional Testing](https://wiki.opnfv.org/display/functest/Opnfv+Functional+Testing) project uses Rally to verify an OpenStack installation. Its JSON output is a rather large JSON file with a strange structure. A similar JSON data is to be be embedded into the HTML output, and is designed to ease the work of its AngularJS scripts. The status.sh script uses **jq** to parse this JSON content. Expected input filename is **report.json**. It outputs a text file of test names including IDs and a trimmed JSON file consisting of results of the same status. By default it is **fail**, but the desired status can be given as an argument to the script. 
+
+```
+$ ./status.sh 
+++ Verification ID:
+	deace42c-3f52-4bb2-9259-f41b364a7a44
+++ Test started at:
+	2018-02-13T15:00:24
+++ Total tests:
+	1599 tests
+++ Status:
+	fail - 367 tests
+++ Duration:
+	00:02:51
+++ See:
+	fail_2018-02-13_15-00-24.txt
+	fail_2018-02-13_15-00-24.json
+
+$ ./status.sh success
+++ Verification ID:
+	deace42c-3f52-4bb2-9259-f41b364a7a44
+++ Test started at:
+	2018-02-13T15:00:24
+++ Total tests:
+	1599 tests
+++ Status:
+	success - 1118 tests
+++ Duration:
+	00:02:12
+++ See:
+	success_2018-02-13_15-00-24.txt
+	success_2018-02-13_15-00-24.json
+
+```
