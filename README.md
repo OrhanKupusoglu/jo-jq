@@ -193,7 +193,7 @@ $ echo $meta
 
 ### Example
 
-[Rally](https://github.com/openstack/rally) is a benchmarking tool for OpenStack. The [OPNFV Functional Testing](https://wiki.opnfv.org/display/functest/Opnfv+Functional+Testing) project uses Rally to verify an OpenStack installation. Its JSON output is a rather large JSON file with a strange structure. A similar JSON data is to be be embedded into the HTML output, and is designed to ease the work of its AngularJS scripts. The [status.sh](.example/status.sh) script uses **jq** to parse this JSON content. Expected input filename is **report.json**. It outputs a text file of test names including IDs and a trimmed JSON file consisting of results of the same status. By default it is **fail**, but the desired status can be given as an argument to the script. 
+[Rally](https://github.com/openstack/rally) is a benchmarking tool for OpenStack. The [OPNFV Functional Testing](https://wiki.opnfv.org/display/functest/Opnfv+Functional+Testing) project uses Rally to verify an OpenStack installation. Its JSON output is a rather large JSON file with a strange structure. A similar JSON data is to be be embedded into the HTML output, and is designed to ease the work of its AngularJS scripts. The [status.sh](./example/status.sh) script uses **jq** to parse this JSON content. Expected input filename is **report.json**. It outputs a text file of test names including IDs and a trimmed JSON file consisting of results of the same status. By default it is **fail**, but the desired status can be given as an argument to the script. 
 
 ```
 $ ./status.sh 
