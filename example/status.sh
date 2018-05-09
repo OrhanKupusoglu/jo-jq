@@ -1,13 +1,37 @@
 #!/bin/bash
 
-# optional first arg is 'status':
-#   fail : <default>
-#   success
-#   skip
-
-TIMESTAMP_STARTED=$( date +%s )
 FILE_REPORT="report.json"
 TEST_STATUS="fail"
+
+# helper functions
+usage () {
+    echo "enter a status to filter:"
+    echo "  --status=fail : <DEFAULT>"
+    echo "  --status=success"
+    echo "  --status=skip"
+    echo
+    echo "enter file to filter:"
+    echo "  --file=report.json : <DEFAULT>"
+    echo
+    echo "get this help:"
+    echo "  --help"
+    echo
+}
+
+# check args
+if [[ "$#" -gt 0 ]]
+then
+    while [ "$#" -gt 0 ]
+    do
+        case "$1" in
+            --status=*)                 TEST_STATUS="${1#*=}"; shift 1;;
+            --file=*)                   FILE_REPORT="${1#*=}"; shift 1;;
+            --help)                     usage; exit 0;;
+            --status|--file)            echo "ERROR: '$1' requires an argument, see --help"; exit 2;;
+            *)                          echo "ERROR: argument '$1' is not supported."; exit 3;;
+        esac
+    done
+fi
 
 if [[ ! -e "$FILE_REPORT" ]]
 then
@@ -15,11 +39,7 @@ then
     exit 1
 fi
 
-if [[ "$#" -gt 0 ]]
-then
-    TEST_STATUS="$1"
-fi
-
+# read JSON
 report_data=$(jq -n --slurpfile arr "${FILE_REPORT}" '$arr[0]')
 filter_data=$(echo "${report_data}" | jq '.tests')
 keys=($(echo "${filter_data}" | jq 'keys' | jq -r '.[]'))
@@ -27,7 +47,7 @@ len="${#keys[@]}"
 
 if [[ $len -eq 0 ]]
 then
-    echo "-- keys array is empty"
+    echo "WARNING: -- keys array is empty"
 else
     number_total=0
     number_status=0
