@@ -76,8 +76,6 @@ $ jo -p pass=$TEST_PASS temp=$TEST_TEMP note="$TEST_NOTE" status=$TEST_STATUS ob
 }
 ```
 
-&nbsp;
-
 ### Objects and Arrays
 jo generates arrays with **-a**:
 ```
@@ -113,8 +111,6 @@ $ jo dtype=wind meta=$(jo time=day height=150 speed=m/s)
 {"dtype":"wind","meta":{"time":"day","height":150,"speed":"m/s"}}
 ```
 
-&nbsp;
-
 ### JSON Variables
 
 Capturing JSON into a Bash variable with [command substitution](https://www.gnu.org/software/bash/manual/html_node/Command-Substitution.html) is quite useful:
@@ -127,8 +123,6 @@ $ echo $temp
 $ echo $wind
 {"dtype":"wind","meta":{"time":"day","height":150,"speed":"m/s"}}
 ```
-
-&nbsp;
 
 ## jq &mdash; the JSON Query Tool
 
