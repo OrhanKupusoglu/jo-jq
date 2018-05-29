@@ -34,7 +34,6 @@ $ sudo apt add-repository ppa:duggan/jo
 $ sudo apt update
 $ sudo apt install jo
 ```
-
 ### Primitives &mdash; numbers, strings, booleans, and null
 
 Let's start with the time-honored cliche:
