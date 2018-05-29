@@ -87,7 +87,7 @@ else
     echo "$filter_data" > $FILE_STATUS_JSON
 
     TIMESTAMP_COMPLETED=$( date +%s )
-    TIME_DURATION="$( date -u -d "0 $TIMESTAMP_COMPLETED seconds - $TIMESTAMP_STARTED seconds" +"%H:%M:%S" )"
+    TIME_DURATION="$(date -u -d "0 $TIMESTAMP_COMPLETED seconds - $TIMESTAMP_STARTED seconds" +"%H:%M:%S")"
 
     printf "++ Total tests:\n\t$number_total tests\n"
     printf "++ Status:\n\t$TEST_STATUS - $number_status tests\n"
