@@ -25,6 +25,16 @@ Generating JSON simply with **echo** is, as expected, error-prone. This is the *
 
 &nbsp;
 
+### Installation
+
+On Ubuntu the following commands add a [repository](https://launchpad.net/~duggan/+archive/ubuntu/jo) and install **jo**.
+
+```
+$ sudo apt add-repository ppa:duggan/jo
+$ sudo apt update
+$ sudo apt install jo
+```
+
 ### Primitives &mdash; numbers, strings, booleans, and null
 
 Let's start with the time-honored cliche:
@@ -128,6 +138,18 @@ $ echo $wind
 ## jq &mdash; the JSON Query Tool
 
 [jq](https://github.com/stedolan/jq) is an advanced JSON processor, suitable to query and output JSON data. The [jq manual](https://stedolan.github.io/jq/manual/) contains many examples.
+
+### Installation
+
+On Ubuntu the **jq** [installation](https://stedolan.github.io/jq/download/) is a breeze:
+
+```
+$ sudo apt install jq
+```
+
+### Commands
+
+**jq** can easily query one-line-JSONs:
 
 ```
 $ echo '{"dtype":"wind","meta":{"time":"day","height":150,"speed":"m/s"}}' | jq ".dtype"
