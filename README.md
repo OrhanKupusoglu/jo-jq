@@ -15,15 +15,11 @@ Any unused key can act as a *comment*, a particularly good choice is **//**. The
 }
 ```
 
-&nbsp;
-
 ## jo &mdash; the JSON Output Tool
 
 [jo](https://github.com/jpmens/jo) is a utility to generate **structured** JSON with Bash.
 
 Generating JSON simply with **echo** is, as expected, error-prone. This is the **unstructured** way to generate JSON with Bash. In general, other than on very simple samples using simple string manipulation to generate JSON should better be avoided.
-
-&nbsp;
 
 ### Installation
 
