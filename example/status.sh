@@ -39,6 +39,8 @@ then
     exit 1
 fi
 
+TIMESTAMP_STARTED=$( date +%s )
+
 # read JSON
 report_data=$(jq -n --slurpfile arr "${FILE_REPORT}" '$arr[0]')
 filter_data=$(echo "${report_data}" | jq '.tests')
