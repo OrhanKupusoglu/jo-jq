@@ -1,20 +1,27 @@
 #!/bin/bash
 
+# check jq
+which_jq=$(which jq)
+
+if [[ -z "${which_jq}" ]]
+then
+    echo "FATAL - 'jq' is required, see:"
+    echo "https://stedolan.github.io/jq/"
+    echo "apt install jq"
+    exit 1
+fi
+
 FILE_REPORT="report.json"
 TEST_STATUS="fail"
 
 # helper functions
-usage () {
-    echo "enter a status to filter:"
-    echo "  --status=fail : <DEFAULT>"
-    echo "  --status=success"
-    echo "  --status=skip"
-    echo
-    echo "enter file to filter:"
-    echo "  --file=report.json : <DEFAULT>"
-    echo
-    echo "get this help:"
-    echo "  --help"
+help () {
+    echo "USAGE: enter commands, no command defaults to '--status=fail --file=report.json'"
+    echo "    --status=fail       -- filter status 'fail'"
+    echo "    --status=success    -- filter status 'success'"
+    echo "    --status=skip       -- filter status 'skip'"
+    echo "    --file=<FILE_PATH>  -- enter file to filter, defaults to 'report.json'"
+    echo "    help                -- print this help"
     echo
 }
 
@@ -24,19 +31,24 @@ then
     while [ "$#" -gt 0 ]
     do
         case "$1" in
-            --status=*)                 TEST_STATUS="${1#*=}"; shift 1;;
-            --file=*)                   FILE_REPORT="${1#*=}"; shift 1;;
-            --help)                     usage; exit 0;;
-            --status|--file)            echo "ERROR: '$1' requires an argument, see --help"; exit 2;;
-            *)                          echo "ERROR: argument '$1' is not supported."; exit 3;;
+            --status=*)             TEST_STATUS="${1#*=}" ; shift 1 ;;
+            --file=*)               FILE_REPORT="${1#*=}" ; shift 1 ;;
+            --status|--file)        echo "ERROR: '$1' requires an argument, see --help" ; exit 2 ;;
+            help)                   help ; exit 0 ;;
+            *)                      echo "ERROR: argument '$1' is not supported." ; exit 3 ;;
         esac
     done
 fi
 
+case "$TEST_STATUS" in
+    fail | success | skip)          ;;
+    *)                              echo "ERROR: status '${TEST_STATUS}' is not supported" ; help ; exit 4 ;;
+esac
+
 if [[ ! -e "$FILE_REPORT" ]]
 then
     echo "ERROR - '$FILE_REPORT' - file does not exist"
-    exit 1
+    exit 5
 fi
 
 TIMESTAMP_STARTED=$( date +%s )
@@ -89,7 +101,7 @@ else
     echo "$filter_data" > $FILE_STATUS_JSON
 
     TIMESTAMP_COMPLETED=$( date +%s )
-    TIME_DURATION="$(date -u -d "0 $TIMESTAMP_COMPLETED seconds - $TIMESTAMP_STARTED seconds" +"%H:%M:%S")"
+    TIME_DURATION="$( date -u -d "0 $TIMESTAMP_COMPLETED seconds - $TIMESTAMP_STARTED seconds" +"%H:%M:%S" )"
 
     printf "++ Total tests:\n\t$number_total tests\n"
     printf "++ Status:\n\t$TEST_STATUS - $number_status tests\n"
