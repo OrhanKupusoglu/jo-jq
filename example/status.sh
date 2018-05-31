@@ -20,7 +20,7 @@ help () {
     echo "    --status=fail       -- filter status 'fail'"
     echo "    --status=success    -- filter status 'success'"
     echo "    --status=skip       -- filter status 'skip'"
-    echo "    --file=<FILE_PATH>  -- enter file to filter, defaults to 'report.json'"
+    echo "    --file=report.json  -- enter file to filter"
     echo "    help                -- print this help"
     echo
 }
