@@ -208,7 +208,6 @@ $ echo $meta
 
 ```
 $ ./status.sh help
-$ ./status.sh help
 USAGE: enter commands, no command defaults to '--status=fail --file=report.json'
     --status=fail       -- filter status 'fail'
     --status=success    -- filter status 'success'
