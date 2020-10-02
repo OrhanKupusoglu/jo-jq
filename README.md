@@ -39,13 +39,13 @@ $ jo greeting='Hello World'
 {"greeting":"Hello World"}
 ```
 
-jo is clever with types so that you can ignore double quotes when appropriate:
+The quotes, both double and single, are interpreted by the shell and stripped from the command line arguments before **jo** receives them:
 ```
-$ TEST_PASS=89
-$ TEST_TEMP=11.43
+$ TEST_PASS="89"
+$ TEST_TEMP='11.43'
 $ TEST_NOTE='mediocre'
 $ TEST_STATUS=true
-$ TEST_OBJECT=null
+$ TEST_OBJECT="null"
 
 # with double quotes
 $ jo pass="$TEST_PASS" temp="$TEST_TEMP" note="$TEST_NOTE" status="$TEST_STATUS" object="$TEST_OBJECT"
